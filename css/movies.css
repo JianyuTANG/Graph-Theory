@@ -1,0 +1,39 @@
+.startandend
+{
+    padding: 10px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+#floyd-discription
+{
+    padding: 20px 10px 5px;
+}
+#button-for-floyd
+{
+    padding: 0px 50px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.btn-primary
+{
+    margin: 10px 20px 10px;
+}
+.button-for-prim
+{
+    padding: 10px 50px 30px 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+.prim-discription
+{
+    padding: 20px 10px 5px;
+}
+#movie-info
+{
+    visibility: hidden;
+}
