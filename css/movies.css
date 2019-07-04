@@ -36,4 +36,5 @@
 #movie-info
 {
     visibility: hidden;
+    word-wrap: break-word;
 }
