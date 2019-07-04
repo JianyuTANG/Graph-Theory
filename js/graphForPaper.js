@@ -55,7 +55,7 @@ var svg_nodes = svg.selectAll("circle")
 //单击结点显示电影信息
 var svg_node = svg.selectAll("circle")
     .on("click", function (d, i) {
-        document.getElementById("movie-infohint").style.visibility = "hidden";
+        document.getElementById("movie-infohint").style.display="none";
         document.getElementById("movie-info").style.visibility = "visible";
         document.getElementById("papername").innerHTML = nodes[i].name;
         document.getElementById("author").innerHTML = nodes[i].author;
