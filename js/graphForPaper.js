@@ -335,9 +335,11 @@ function show() {
     if (img.style.display == 'none') {
         img.style.display = '';
         document.getElementById('svg').style.display='none';
+        document.getElementById('fat-btn9').innerHTML="d3.js的效果";
     } else {
         img.style.display = 'none';
         document.getElementById('svg').style.display='';
+        document.getElementById('fat-btn9').innerHTML="利用python画的图";
     }
     
 }
