@@ -334,9 +334,12 @@ var img = document.getElementById('img');
 function show() {
     if (img.style.display == 'none') {
         img.style.display = '';
+        document.getElementById('svg').style.display='none';
     } else {
         img.style.display = 'none';
+        document.getElementById('svg').style.display='';
     }
+    
 }
 
 function change_pic() {

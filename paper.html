@@ -125,7 +125,11 @@
                         </div>
                         <div class="tab-pane active4" id="panel-189311">
                             <p class="prim-discription">
-                                利用GN算法得到的数据来划分社区，同社区用同一个颜色表示。 可以发现，通过颜色变换，d3.js做出来的图效果还是很明显的，划分成了多个不同的社区。这是按照算法求得的模块度最优的结果。 此外，也可以直接查看python生成的图：每次通过删除边来不断划分社区。点击按钮即可查看，点击图片可查看每次划分结果。
+                                利用GN算法得到的数据来划分社区，同社区用同一个颜色表示。 
+                                可以发现，通过颜色变换，d3.js做出来的图效果还是很明显的，划分成了多个不同的社区。
+                                这是按照算法求得的模块度最优的结果。
+                                 此外，也可以直接查看python生成的图（点击“利用python画的图”的按钮，图在d3图的下方，请下拉界面）：每次通过删除边来不断划分社区。
+                                 点击图片自身可切换，查看每次划分结果。
                             </p>
                             <div class="button-for-prim">
                                 <button id="fat-btn7" class="btn btn-primary" data-loading-text="Loading..."
@@ -175,7 +179,7 @@
                         </div>
                     </div>
                     <div class="col-md-9 column">
-                        <svg></svg>
+                        <svg id="svg"></svg>
                         <div id="img" style="display:none">
                                 <img src="img/BestG.jpg" class="wujiang_pic_size" id="first_pic" onClick="change_pic()">
                                 </img>
