@@ -20,7 +20,7 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/movies.css">
-    <title>离散数学大作业</title>
+    <title>豆瓣电影数据集</title>
 </head>
 
 <body>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="tab-pane active2" id="panel-189309">
                             <p class="prim-discription">
-                                利用Prim算法求得各个结点的介数中心度。
+                                利用深度优先搜索按照定义求得各个结点的介数中心度。
                             </p>
                             <div class="button-for-prim">
                                 <button id="fat-btn5" class="btn btn-primary" data-loading-text="Loading..."
@@ -125,16 +125,26 @@
                         </div>
                         <div class="tab-pane active4" id="panel-189311">
                             <p class="prim-discription">
-                                待完成。。。。。。
+                                利用基础的图聚类算法——标签传播算法，对这些电影按照国家（地区）进行了分类。
                             </p>
                             <div class="button-for-prim">
                                 <button id="fat-btn7" class="btn btn-primary" data-loading-text="Loading..."
-                                    type="button"> 展示
+                                    type="button" onclick="displayCluster()"> 展示聚类结果
                                 </button>
                                 <button id="fat-btn8" class="btn btn-primary" data-loading-text="Loading..."
-                                    type="button"> 清除
+                                    type="button" onclick="clearCluster()"> 清除聚类结果
                                 </button>
                             </div>
+                            <ul>
+                                <li>
+                                    浅蓝色：中国
+                                </li>
+                                <li>深蓝色：日本</li>
+                                <li>橘色：美国</li>
+                                <li>浅黄色：欧洲</li>
+                                <li>绿色：韩国</li>
+                            </ul>
+                            <p>可以看出，因为初始有标签点的选取不可能做到完全均匀，因此部分电影数较少的类型的准确性往往容易受到影响，而最大的一类——中国的准确性则相对较高。</p>
                         </div>
                     </div>
                 </div>

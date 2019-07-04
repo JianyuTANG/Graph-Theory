@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <script src="https://d3js.org/d3.v3.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/movies.css">
+    <title>论文数据集</title>
+</head>
+
+<body>
+
+    <ul class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li>论文数据集</li>
+    </ul>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="jumbotron" style="background: rgb(0, 87, 128);padding: 20px 20px 20px">
+                    <h1>
+                        <!--豆瓣论文数据-->
+                    </h1>
+                    <p style="color: whitesmoke;font-size: 1cm">
+                        论文数据集
+                    </p>
+                </div>
+                <div class="tabbable" id="tabs-724272">
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="#panel-141670" data-toggle="tab">最短路径</a>
+                        </li>
+                        <li class="active">
+                            <a href="#panel-189308" data-toggle="tab">最小生成树</a>
+                        </li>
+                        <li class="active2">
+                            <a href="#panel-189309" data-toggle="tab">介数中心度</a>
+                        </li>
+                        <li class="active3">
+                            <a href="#panel-189310" data-toggle="tab">紧密中心度</a>
+                        </li>
+                        <li class="active4">
+                            <a href="#panel-189311" data-toggle="tab">图聚类算法</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="panel-141670">
+                            <p id="floyd-discription">利用Floyd算法求得任意两点之间的最短路径。</p>
+                            <div class="startandend">
+                                <form class="bs-example bs-example-form" role="form">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">起点</span>
+                                        <input id="startpoint" type="text" class="form-control" placeholder="请输入起点的电影名">
+                                    </div>
+                                    <br>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">终点</span>
+                                        <input id="endpoint" type="text" class="form-control" placeholder="请输入终点的电影名">
+                                    </div>
+                                </form>
+                                <div id="button-for-floyd">
+                                    <button id="fat-btn" class="btn btn-primary" data-loading-text="Loading..."
+                                        type="button" onclick="getRoute()"> 显示最短路径
+                                    </button>
+                                    <button id="fat-btn2" class="btn btn-primary" data-loading-text="Loading..."
+                                        type="button" onclick="clearRoute()"> 清除最短路径
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane active" id="panel-189308">
+                            <p class="prim-discription">
+                                利用Prim算法求得图的最小生成树。
+                            </p>
+                            <div class="button-for-prim">
+                                <button id="fat-btn3" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="buildTree()"> 显示最小生成树
+                                </button>
+                                <button id="fat-btn4" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="restoreTree()"> 清除最小生成树
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-pane active2" id="panel-189309">
+                            <p class="prim-discription">
+                                基于Floyd算法求得的各节点之间的最短路径求得介数中心度。
+                            </p>
+                            <div class="button-for-prim">
+                                <button id="fat-btn5" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="displayCentrality(1)"> 展示介数中心度
+                                </button>
+                                <button id="fat-btn6" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="restoreCentrality()"> 清除介数中心度
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-pane active3" id="panel-189310">
+                            <p class="prim-discription">
+                                利用Floyd算法得到的数据按定义计算各个结点的紧密中心度。
+                            </p>
+                            <div class="button-for-prim">
+                                <button id="fat-btn7" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="displayCentrality(2)"> 展示紧密中心度
+                                </button>
+                                <button id="fat-btn8" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="restoreCentrality()"> 清除紧密中心度
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tab-pane active4" id="panel-189311">
+                            <p class="prim-discription">
+                                利用GN算法得到的数据来划分社区，同社区用同一个颜色表示。
+                                但是可以发现，仅仅通过颜色变换，d3.js做出来的图效果并不是很好。因此，在d3图后面附上了利用python所作的图：每次通过删除边来不断划分社区。点击图片可查看每次划分结果.
+                            </p>
+                            <div class="button-for-prim">
+                                <button id="fat-btn7" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="displayCommunity()"> 展示社区发现
+                                </button>
+                                <button id="fat-btn8" class="btn btn-primary" data-loading-text="Loading..."
+                                    type="button" onclick="restoreCommunity()"> 清除社区发现
+                                </button>
+                                <button id="fat-btn9" class="btn btn-primary" data-loading-text="Loading..." 
+                                    type="button" value="点击打赏" onclick="show()">利用python画的图</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="row clearfix">
+                    <div class="col-md-3 column">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">论文信息</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p id="movie-infohint">当前未选中论文（请单击图中结点显示论文信息）</p>
+                                <dl id="movie-info">
+                                    <dt>文章题目：</dt>
+                                    <dl id="papername"></dl>
+                                    <dt>作者：</dt>
+                                    <dl id="author"></dl>
+                                    <dt>发表的年份：</dt>
+                                    <dl id="year"></dl>
+                                    <dt>发表的会议：</dt>
+                                    <dl id="conference"></dl>
+                                    <dt>文章链接</dt>
+                                    <dl id="link"></dl>
+                                    <dt>摘要</dt>
+                                    <dl id="abstract"></dl>
+                                    <dt>关键字：</dt>
+                                    <dl id="keywords"></dl>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 column">
+                        <svg></svg>
+                        <div id="img" style="display:none">
+                                <img src="img/BestG.jpg" class="wujiang_pic_size" id="first_pic" onClick="change_pic()">
+                                </img>
+                        </div>
+                        <div id="toShowPython">
+                            <script src="js/pathForPaper.js"></script>
+                            <script src="js/paperNode.js"></script>
+                            <script src="js/graphForPaper.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -12,7 +12,7 @@ var force = d3.layout.force()
     .links(edges)
     .size([650, 550])     //作用力的中心区域       
     .linkDistance(100)   //连线的长度
-    .charge([-25]);     //负数为排斥 正数为吸引
+    .charge([-65]);     //负数为排斥 正数为吸引
 
 /*很关键 启动force*/
 force.start();
@@ -57,13 +57,13 @@ var svg_node = svg.selectAll("circle")
     .on("click", function (d, i) {
         document.getElementById("movie-infohint").style.visibility = "hidden";
         document.getElementById("movie-info").style.visibility = "visible";
-        document.getElementById("moviename").innerHTML = nodes[i].name;
-        document.getElementById("moviedirector").innerHTML = nodes[i].director;
-        document.getElementById("moviesenarist").innerHTML = nodes[i].senarist;
-        document.getElementById("movieactors").innerHTML = nodes[i].actors;
-        document.getElementById("movieorigin").innerHTML = nodes[i].origin;
-        document.getElementById("movielanguage").innerHTML = nodes[i].language;
-        document.getElementById("movielaunchdate").innerHTML = nodes[i].launchdate;
+        document.getElementById("papername").innerHTML = nodes[i].name;
+        document.getElementById("author").innerHTML = nodes[i].author;
+        document.getElementById("year").innerHTML = nodes[i].year;
+        document.getElementById("conference").innerHTML = nodes[i].conference;
+        document.getElementById("link").innerHTML = nodes[i].link;
+        document.getElementById("abstract").innerHTML = nodes[i].abstract;
+        document.getElementById("keywords").innerHTML = nodes[i].keywords;
     })
 
 /*添加描述节点的文字*/
@@ -105,7 +105,7 @@ function displayCentrality(i) {
             .transition()
             .duration(2000)
             .attr("r", function (circle) {
-                return (circle.BC * 20);
+                return ((circle.betweeness /200));
             });
     }
     else if (i == 2) {                //紧密中心度
@@ -114,10 +114,36 @@ function displayCentrality(i) {
             .transition()
             .duration(2000)
             .attr("r", function (circle) {
-                return (circle.CC * 20);
+                return ((60-4*circle.closeness)/6);
             });
     }
 }
+
+//社区发现算法展示 颜色归类
+function displayCommunity() {
+    restoreCentrality();
+    restoreTree();
+    svg.selectAll("circle")
+        .data(nodes)
+        .transition()
+        .duration(2000)
+        .style("fill", function (circle) {
+            return color(20-circle.group);
+        })
+}
+
+function restoreCommunity() {
+    restoreCentrality();
+    restoreTree();
+    svg.selectAll("circle")
+        .data(nodes)
+        .transition()
+        .duration(2000)
+        .style("fill", function (d,i) {
+            return color(i);
+        })
+}
+
 
 function restoreCentrality() {
     svg.selectAll("circle")
@@ -289,8 +315,8 @@ function getRoute() {  //最短路径展示
     }
     else
         alert("您搜索的电影不存在");
-    console.log(s + " " + e);
-
+    console.log(s+" "+e);
+        
 }
 
 function clearRoute() {
@@ -304,19 +330,42 @@ function clearRoute() {
         });
 }
 
-
-function displayCluster() {
-    svg_nodes
-        .style("fill", function (circle) {
-            return color(circle.col);
-        });
+var img = document.getElementById('img');
+function show() {
+    if (img.style.display == 'none') {
+        img.style.display = '';
+    } else {
+        img.style.display = 'none';
+    }
 }
 
-function clearCluster() {
-    var counter=0;
-    svg_nodes
-        .style("fill", function () {
-            counter++;
-            return color(counter%10);
-        });
+function change_pic() {
+    var imgObj = document.getElementById("first_pic");
+    if (imgObj.getAttribute("src", 12) == "img/BestG.jpg") {
+        imgObj.src = "img/BestG0.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG0.jpg") {
+        imgObj.src = "img/BestG1.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG1.jpg") {
+        imgObj.src = "img/BestG2.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG2.jpg") {
+        imgObj.src = "img/BestG3.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG3.jpg") {
+        imgObj.src = "img/BestG4.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG4.jpg") {
+        imgObj.src = "img/BestG5.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG5.jpg") {
+        imgObj.src = "img/BestG6.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG6.jpg") {
+        imgObj.src = "img/BestG7.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG7.jpg") {
+        imgObj.src = "img/BestG8.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG8.jpg") {
+        imgObj.src = "img/BestG9.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG9.jpg") {
+        imgObj.src = "img/BestG10.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG10.jpg") {
+        imgObj.src = "img/BestG11.jpg";
+    } else if (imgObj.getAttribute("src", 13) == "img/BestG11.jpg") {
+        imgObj.src = "img/BestG.jpg";
+    } 
 }
