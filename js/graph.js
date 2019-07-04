@@ -55,7 +55,7 @@ var svg_nodes = svg.selectAll("circle")
 //单击结点显示电影信息
 var svg_node = svg.selectAll("circle")
     .on("click", function (d, i) {
-        document.getElementById("movie-infohint").style.display="none";
+        document.getElementById("movie-infohint").style.display = "none";
         document.getElementById("movie-info").style.visibility = "visible";
         document.getElementById("moviename").innerHTML = nodes[i].name;
         document.getElementById("moviedirector").innerHTML = nodes[i].director;
@@ -313,16 +313,18 @@ function displayCluster() {
     restoreCentrality();
     restoreTree();
     svg_nodes
+        .transition()
+        .duration(2000)
         .style("fill", function (circle) {
             return color(circle.col);
         });
 }
 
 function clearCluster() {
-    var counter=0;
+    var counter = 0;
     svg_nodes
         .style("fill", function () {
             counter++;
-            return color(counter%10);
+            return color(counter % 10);
         });
 }
