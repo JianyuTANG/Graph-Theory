@@ -98,6 +98,7 @@ force.on("tick", function () { //对于每一个时间间隔  将之前通过for
 //中心度算法展示 结点缩放
 function displayCentrality(i) {
     restoreCentrality();
+    clearCluster();
     restoreTree();
     if (i == 1) {                //介数中心度
         svg.selectAll("circle")
@@ -151,6 +152,7 @@ var svg_edges2 = svg.selectAll("line")
 function buildTree() {         //prim算法展示
     restoreCentrality();
     restoreTree();
+    clearCluster();
     svg_edges
         .transition()
         .duration(1000)
@@ -259,6 +261,7 @@ function getRoute() {  //最短路径展示
     clearRoute();
     restoreCentrality();
     restoreTree();
+    clearCluster();
     var ps = document.getElementById("startpoint").value;
     //alert(ps);
     var es = document.getElementById("endpoint").value;
@@ -306,6 +309,9 @@ function clearRoute() {
 
 
 function displayCluster() {
+    clearRoute();
+    restoreCentrality();
+    restoreTree();
     svg_nodes
         .style("fill", function (circle) {
             return color(circle.col);
